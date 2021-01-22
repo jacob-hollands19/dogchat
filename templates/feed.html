@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 
 {% block content %}
@@ -16,35 +17,33 @@
         <article class="media">
           <div class="media-left">
             <figure class="image is-64x64">
-              <img src="{{ url_for('static', filename=post[0]+'.png') }}" alt="Image">
+              <img src="{{ url_for('static', filename=post['Postee']+'.png') }}" alt="Image">
             </figure>
+
+            <!-- <a href="{{ url_for('dog', handle=post['Postee']) }}"><strong>{{post['Likes']}} Likes</strong></a> -->
+              <!-- <p>{{post['Likes']}} Likes</p> -->
           </div>
           <div class="media-content">
             <div class="content">
               <p>
-                <a href="{{ url_for('dog', handle=post[0]) }}"><strong>{{ get_dog_by_handle(post[0])['name'] }}</strong></a> <small>@{{post[0]}}</small> 
+                <a href="{{ url_for('dog', handle=post['Postee']) }}"><strong>{{ get_dog_by_handle(post['Postee'])['name'] }}</strong></a> <small>@{{post['Postee']}}</small> 
                 <!-- <small>31m</small> -->
                 <br>
-                {{ post[1] }}
+                {{post['Post']}}
               </p>
             </div>
-            <nav class="level is-mobile">
-              <div class="level-left">
-                <a class="level-item" aria-label="reply">
-                  <span class="icon is-small">
-                    <i class="fas fa-reply" aria-hidden="true"></i>
-                  </span>
-                </a>
-                <a class="level-item" aria-label="retweet">
-                  <span class="icon is-small">
-                    <i class="fas fa-retweet" aria-hidden="true"></i>
-                  </span>
-                </a>
-                <a class="level-item" aria-label="like">
-                  <span class="icon is-small">
-                    <i class="fas fa-heart" aria-hidden="true"></i>
-                  </span>
-                </a>
+            <nav class="level-left">
+              <div class="level-item has-text-left">
+                <div>
+                  <p class="">Reposts</p>
+                  <p class="">{{post['Reposts']}}</p>
+                </div>
+              </div>
+              <div class="level-item has-text-left">
+                <div>
+                  <p><button class=" has-tooltip-bottom has-tooltip-multiline" data-tooltip="{{post['LikedBy']}}">Likes</button></p>
+                  <p>{{post['Likes']}}</p>
+                </div>
               </div>
             </nav>
           </div>
